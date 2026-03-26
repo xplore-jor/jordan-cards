@@ -8,374 +8,187 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 :root {
-  --gold: #C9A84C;
-  --gold-light: #E8C97A;
-  --gold-pale: #F5E6C0;
-  --navy: #0D1F3C;
-  --navy-mid: #1A3560;
-  --sand: #F5EDD6;
-  --sand-light: #FDF8EE;
-  --white: #FFFFFF;
+  --gold:#C9A84C; --gold-light:#E8C97A; --gold-pale:#F5E6C0;
+  --navy:#0D1F3C; --navy-mid:#1A3560;
+  --sand:#F5EDD6; --sand-light:#FDF8EE; --white:#FFFFFF;
 }
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body { font-family:'Tajawal',sans-serif; background:var(--sand-light); color:var(--navy); overflow-x:hidden; }
-
-/* NAV */
-nav {
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  background:rgba(13,31,60,0.95); backdrop-filter:blur(12px);
-  padding:0.8rem 2rem;
-  display:flex; align-items:center; justify-content:space-between;
-  border-bottom:1px solid rgba(201,168,76,0.2);
-}
-.nav-logo {
-  font-family:'Amiri',serif; color:var(--gold); font-size:1.2rem;
-}
-.nav-logo span { color:white; font-size:0.75rem; display:block; font-family:'Tajawal',sans-serif; }
-.nav-links { display:flex; gap:1.5rem; }
-.nav-links a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:color 0.2s; }
-.nav-links a:hover { color:var(--gold); }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Tajawal',sans-serif;background:var(--sand-light);color:var(--navy);overflow-x:hidden}
 
 /* HERO */
-.hero {
-  min-height:100vh; background:var(--navy);
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  text-align:center; padding:2rem; position:relative; overflow:hidden;
-}
-.hero-bg {
-  position:absolute; inset:0;
-  background:
-    radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(26,53,96,0.8) 0%, transparent 50%);
-}
-.hero-pattern {
-  position:absolute; inset:0;
-  background-image: repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(201,168,76,0.03) 60px, rgba(201,168,76,0.03) 61px);
-}
-.hero-content { position:relative; z-index:1; }
-.hero-badge {
-  display:inline-block; border:1px solid rgba(201,168,76,0.5);
-  color:var(--gold); font-size:0.72rem; letter-spacing:0.2em;
-  padding:0.35rem 1.2rem; border-radius:100px; margin-bottom:2rem;
-  font-family:'Playfair Display',serif; text-transform:uppercase;
-  animation:fadeUp 0.8s ease both;
-}
-.hero h1 {
-  font-family:'Amiri',serif; font-size:clamp(2.8rem,8vw,5.5rem);
-  color:white; line-height:1.15; margin-bottom:0.4rem;
-  animation:fadeUp 0.8s 0.1s ease both;
-}
-.hero h1 em { color:var(--gold); font-style:normal; }
-.hero-en {
-  font-family:'Playfair Display',serif; font-size:clamp(1rem,3vw,1.8rem);
-  color:var(--gold-light); margin-bottom:1.5rem; letter-spacing:0.06em;
-  animation:fadeUp 0.8s 0.2s ease both;
-}
-.hero-desc {
-  max-width:580px; color:rgba(255,255,255,0.65); font-size:1rem;
-  line-height:1.9; margin-bottom:3rem;
-  animation:fadeUp 0.8s 0.3s ease both;
-}
-.hero-cta {
-  display:inline-flex; align-items:center; gap:0.6rem;
-  background:var(--gold); color:var(--navy); text-decoration:none;
-  font-weight:700; padding:0.9rem 2.4rem; border-radius:100px;
-  font-size:1rem; transition:all 0.3s; font-family:'Tajawal',sans-serif;
-  animation:fadeUp 0.8s 0.4s ease both;
-}
-.hero-cta:hover { background:var(--gold-light); transform:translateY(-2px); box-shadow:0 10px 30px rgba(201,168,76,0.35); }
-.hero-stats {
-  position:absolute; bottom:2.5rem; left:0; right:0;
-  display:flex; justify-content:center; gap:3rem;
-  animation:fadeUp 0.8s 0.6s ease both;
-}
-.stat { text-align:center; }
-.stat strong { display:block; font-size:2rem; color:var(--gold); font-family:'Playfair Display',serif; }
-.stat span { color:rgba(255,255,255,0.5); font-size:0.8rem; }
+.hero{min-height:100vh;background:var(--navy);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;overflow:hidden}
+.hero-pattern{position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(201,168,76,.04) 40px,rgba(201,168,76,.04) 80px),repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(201,168,76,.04) 40px,rgba(201,168,76,.04) 80px)}
+.hero-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.12) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);font-size:.72rem;letter-spacing:.2em;padding:.4rem 1.4rem;border-radius:100px;margin-bottom:1.8rem;font-family:'Playfair Display',serif;animation:fadeUp .8s ease both}
+.hero h1{font-family:'Amiri',serif;font-size:clamp(2.4rem,7vw,5rem);color:var(--white);line-height:1.2;margin-bottom:.3rem;animation:fadeUp .8s .1s ease both}
+.hero h1 span{color:var(--gold)}
+.hero-en{font-family:'Playfair Display',serif;font-size:clamp(1rem,3vw,1.7rem);color:var(--gold-light);letter-spacing:.06em;margin-bottom:.6rem;animation:fadeUp .8s .2s ease both}
+.hero-school{font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:1.4rem;animation:fadeUp .8s .25s ease both}
+.hero-desc{max-width:560px;color:rgba(255,255,255,.68);font-size:.98rem;line-height:1.9;margin-bottom:2.5rem;animation:fadeUp .8s .3s ease both}
+.hero-desc em{font-size:.85rem;color:rgba(255,255,255,.4);font-style:normal}
+.scroll-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:var(--navy);text-decoration:none;font-weight:700;padding:.9rem 2.2rem;border-radius:100px;font-size:.98rem;transition:all .3s;font-family:'Tajawal',sans-serif;animation:fadeUp .8s .4s ease both}
+.scroll-btn:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,.4)}
+.hero-stats{position:absolute;bottom:2rem;display:flex;gap:3rem;animation:fadeUp .8s .5s ease both}
+.stat{text-align:center;color:rgba(255,255,255,.5);font-size:.8rem}
+.stat strong{display:block;font-size:1.8rem;color:var(--gold);font-family:'Playfair Display',serif}
 
-/* SECTION HEADER */
-.section-header { text-align:center; padding:5rem 2rem 3rem; }
-.section-label {
-  font-size:0.72rem; letter-spacing:0.25em; color:var(--gold);
-  text-transform:uppercase; display:block; margin-bottom:0.8rem;
-  font-family:'Playfair Display',serif;
-}
-.section-header h2 { font-family:'Amiri',serif; font-size:clamp(2rem,5vw,3.2rem); color:var(--navy); }
-.section-header p { color:#666; margin-top:0.8rem; font-size:0.95rem; line-height:1.8; }
+/* SECTION */
+.sec-hdr{text-align:center;padding:4.5rem 2rem 2.5rem}
+.sec-label{font-size:.7rem;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:.7rem;font-family:'Playfair Display',serif}
+.sec-hdr h2{font-family:'Amiri',serif;font-size:clamp(1.8rem,4vw,3rem);color:var(--navy)}
+.sec-hdr p{color:#666;margin-top:.7rem;font-size:.97rem;max-width:540px;margin-inline:auto;line-height:1.8}
 
-/* FILTER TABS */
-.filter-tabs {
-  display:flex; justify-content:center; gap:0.6rem;
-  flex-wrap:wrap; padding:0 2rem 2rem;
-}
-.filter-btn {
-  border:1px solid rgba(13,31,60,0.2); background:white; color:#555;
-  padding:0.45rem 1.2rem; border-radius:100px; font-size:0.8rem;
-  cursor:pointer; font-family:'Tajawal',sans-serif; transition:all 0.2s;
-}
-.filter-btn.active, .filter-btn:hover {
-  background:var(--navy); color:var(--gold); border-color:var(--navy);
-}
-
-/* CARDS GRID */
-.cards-section { background:var(--sand-light); padding-bottom:5rem; }
-.cards-grid {
-  display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-  gap:1.8rem; max-width:1200px; margin:0 auto; padding:0 2rem;
-}
+/* GRID */
+.cards-sec{background:var(--sand-light);padding-bottom:5rem}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.6rem;max-width:1200px;margin:0 auto;padding:0 1.5rem}
 
 /* CARD */
-.landmark-card {
-  background:white; border-radius:20px; overflow:hidden;
-  box-shadow:0 4px 24px rgba(13,31,60,0.07);
-  transition:transform 0.3s, box-shadow 0.3s;
-  opacity:0; transform:translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s;
-}
-.landmark-card.visible { opacity:1; transform:translateY(0); }
-.landmark-card:hover { transform:translateY(-6px); box-shadow:0 20px 50px rgba(13,31,60,0.13); }
-.landmark-card.hidden { display:none; }
-
-.card-img-wrap { position:relative; height:210px; overflow:hidden; }
-.card-img-wrap img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s; }
-.landmark-card:hover .card-img-wrap img { transform:scale(1.06); }
-.card-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(13,31,60,0.88) 0%, transparent 55%); }
-.card-tag {
-  position:absolute; top:0.9rem; right:0.9rem;
-  background:var(--gold); color:var(--navy);
-  font-size:0.65rem; font-weight:700; padding:0.25rem 0.7rem;
-  border-radius:100px; letter-spacing:0.08em; text-transform:uppercase;
-}
-.card-title { position:absolute; bottom:0.9rem; right:1rem; left:1rem; }
-.card-title h3 { font-family:'Amiri',serif; font-size:1.55rem; color:white; line-height:1.2; }
-.card-title .en { font-family:'Playfair Display',serif; font-size:0.8rem; color:var(--gold-light); }
-
-.card-body { padding:1.3rem; }
-.chips { display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:0.9rem; }
-.chip {
-  display:flex; align-items:center; gap:0.3rem;
-  font-size:0.73rem; color:#666; background:var(--sand);
-  padding:0.25rem 0.65rem; border-radius:100px;
-}
-.card-desc {
-  font-size:0.875rem; color:#555; line-height:1.8; margin-bottom:1rem;
-  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
-}
-.card-facts { border-top:1px solid var(--sand); padding-top:0.9rem; margin-bottom:1rem; }
-.fact-row { display:flex; gap:0.5rem; margin-bottom:0.45rem; font-size:0.8rem; color:#444; align-items:flex-start; }
-.dot { width:5px; height:5px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:0.45rem; }
-
-/* QR ROW */
-.qr-row { border-top:1px solid var(--sand); padding-top:1rem; display:flex; align-items:center; gap:1rem; }
-.qr-wrap {
-  flex-shrink:0; background:white; border:2px solid var(--gold-pale);
-  border-radius:10px; padding:5px; width:76px; height:76px;
-  display:flex; align-items:center; justify-content:center;
-}
-.qr-wrap canvas, .qr-wrap img { width:64px !important; height:64px !important; }
-.qr-text h4 { font-size:0.82rem; color:var(--navy); font-weight:700; margin-bottom:0.2rem; }
-.qr-text p { font-size:0.72rem; color:#999; line-height:1.5; }
-.detail-btn {
-  display:inline-flex; align-items:center; gap:0.3rem;
-  margin-top:0.5rem; font-size:0.75rem; color:var(--navy-mid);
-  background:var(--sand); border:none; padding:0.35rem 0.9rem;
-  border-radius:100px; cursor:pointer; font-family:'Tajawal',sans-serif;
-  font-weight:700; text-decoration:none; transition:background 0.2s;
-}
-.detail-btn:hover { background:var(--gold-pale); }
+.lcard{background:var(--white);border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(13,31,60,.08);opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s ease,box-shadow .3s}
+.lcard.visible{opacity:1;transform:translateY(0)}
+.lcard:hover{transform:translateY(-6px)!important;box-shadow:0 16px 40px rgba(13,31,60,.15)}
+.img-wrap{position:relative;height:205px;overflow:hidden}
+.img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.lcard:hover .img-wrap img{transform:scale(1.06)}
+.img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,31,60,.85) 0%,transparent 55%)}
+.ctag{position:absolute;top:.85rem;right:.85rem;background:var(--gold);color:var(--navy);font-size:.65rem;font-weight:700;padding:.25rem .7rem;border-radius:100px;letter-spacing:.08em}
+.ctitle{position:absolute;bottom:.85rem;right:.9rem;left:.9rem}
+.ctitle h3{font-family:'Amiri',serif;font-size:1.4rem;color:var(--white);line-height:1.2}
+.ctitle .cen{font-family:'Playfair Display',serif;font-size:.78rem;color:var(--gold-light);letter-spacing:.04em}
+.cbody{padding:1.2rem}
+.irow{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:.9rem}
+.chip{display:flex;align-items:center;gap:.3rem;font-size:.72rem;color:#666;background:var(--sand);padding:.25rem .65rem;border-radius:100px}
+.cdesc{font-size:.86rem;color:#555;line-height:1.8;margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.qr-row{border-top:1px solid var(--sand);padding-top:1rem;display:flex;align-items:center;gap:.85rem}
+.qr-mini{flex-shrink:0;border:2px solid var(--gold-pale);border-radius:8px;padding:4px;width:70px;height:70px;display:flex;align-items:center;justify-content:center;background:#fff}
+.qr-mini canvas,.qr-mini img{width:60px!important;height:60px!important}
+.qlabel h4{font-size:.8rem;color:var(--navy);font-weight:700;margin-bottom:.15rem}
+.qlabel p{font-size:.7rem;color:#aaa;line-height:1.5}
+.dbtn{margin-top:.45rem;display:inline-flex;align-items:center;gap:.3rem;font-size:.73rem;color:var(--navy-mid);background:var(--sand);border:none;padding:.32rem .85rem;border-radius:100px;cursor:pointer;font-family:'Tajawal',sans-serif;font-weight:700;text-decoration:none;transition:background .2s}
+.dbtn:hover{background:var(--gold-pale)}
 
 /* ABOUT */
-.about-section { background:var(--navy); padding:5rem 2rem; text-align:center; }
-.about-section h2 { font-family:'Amiri',serif; font-size:clamp(1.8rem,4vw,3rem); color:white; margin-bottom:1rem; }
-.about-section > p { color:rgba(255,255,255,0.65); max-width:650px; margin:0 auto 3rem; line-height:1.9; }
-.features { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1.2rem; max-width:900px; margin:0 auto; }
-.feature {
-  background:rgba(255,255,255,0.05); border:1px solid rgba(201,168,76,0.2);
-  border-radius:16px; padding:1.5rem;
-}
-.feature .icon { font-size:2rem; margin-bottom:0.8rem; }
-.feature h4 { font-family:'Amiri',serif; color:var(--gold); font-size:1.05rem; margin-bottom:0.3rem; }
-.feature p { color:rgba(255,255,255,0.55); font-size:0.8rem; line-height:1.6; }
+.about{background:var(--navy);padding:5rem 2rem;text-align:center}
+.about h2{font-family:'Amiri',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--white);margin-bottom:1rem}
+.about>p{color:rgba(255,255,255,.62);max-width:600px;margin:0 auto 3rem;line-height:1.9}
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1.2rem;max-width:900px;margin:0 auto}
+.feat{background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.2);border-radius:14px;padding:1.3rem}
+.feat .fi{font-size:1.7rem;margin-bottom:.55rem}
+.feat h4{font-family:'Amiri',serif;color:var(--gold);font-size:.98rem;margin-bottom:.3rem}
+.feat p{color:rgba(255,255,255,.5);font-size:.76rem;line-height:1.6}
 
-/* FOOTER */
-footer {
-  background:#060f1e; padding:2rem; text-align:center;
-  color:rgba(255,255,255,0.35); font-size:0.8rem;
-}
-footer em { color:var(--gold); font-style:normal; }
+footer{background:#060f1e;padding:1.8rem 2rem;text-align:center;color:rgba(255,255,255,.32);font-size:.78rem}
+footer span{color:var(--gold)}
 
-/* ===== DETAIL PAGE ===== */
-.detail-page { display:none; min-height:100vh; background:var(--sand-light); }
-.detail-page.active { display:block; }
-.detail-hero { height:55vh; position:relative; overflow:hidden; }
-.detail-hero img { width:100%; height:100%; object-fit:cover; }
-.detail-hero-overlay {
-  position:absolute; inset:0;
-  background:linear-gradient(to top, rgba(13,31,60,0.92) 0%, rgba(13,31,60,0.25) 100%);
-  display:flex; flex-direction:column; justify-content:flex-end; padding:2.5rem;
-}
-.back-btn {
-  position:absolute; top:5rem; right:1.5rem;
-  background:rgba(255,255,255,0.12); backdrop-filter:blur(10px);
-  color:white; border:1px solid rgba(255,255,255,0.25);
-  padding:0.5rem 1.2rem; border-radius:100px; cursor:pointer;
-  font-family:'Tajawal',sans-serif; font-size:0.9rem;
-  display:flex; align-items:center; gap:0.4rem; transition:background 0.2s;
-}
-.back-btn:hover { background:rgba(255,255,255,0.22); }
-.detail-hero-overlay h1 { font-family:'Amiri',serif; font-size:clamp(2rem,6vw,3.8rem); color:white; line-height:1.2; }
-.detail-hero-overlay .en-sub { font-family:'Playfair Display',serif; color:var(--gold-light); font-size:1.1rem; margin-top:0.3rem; }
+/* DETAIL */
+.dpage{display:none;min-height:100vh;background:var(--sand-light)}
+.dpage.active{display:block}
+.dhero{height:55vh;position:relative;overflow:hidden}
+.dhero img{width:100%;height:100%;object-fit:cover}
+.dhero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,31,60,.9) 0%,rgba(13,31,60,.2) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:2.5rem}
+.back-btn{position:absolute;top:1.5rem;right:1.5rem;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);color:#fff;border:1px solid rgba(255,255,255,.3);padding:.5rem 1.2rem;border-radius:100px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:.88rem;display:flex;align-items:center;gap:.4rem;transition:background .2s}
+.back-btn:hover{background:rgba(255,255,255,.25)}
+.dtag{display:inline-block;background:var(--gold);color:var(--navy);font-size:.68rem;font-weight:700;padding:.28rem .75rem;border-radius:100px;margin-bottom:.7rem;letter-spacing:.08em}
+.dhero-ov h1{font-family:'Amiri',serif;font-size:clamp(2rem,5vw,3.5rem);color:var(--white)}
+.dhero-ov .dent{font-family:'Playfair Display',serif;color:var(--gold-light);font-size:1.05rem;margin-top:.3rem}
+.dcontent{max-width:940px;margin:0 auto;padding:3rem 1.5rem}
+.dgrid{display:grid;grid-template-columns:1fr 265px;gap:2.5rem;align-items:start}
+@media(max-width:700px){.dgrid{grid-template-columns:1fr}}
+.dsec{margin-bottom:2rem}
+.dsec h3{font-family:'Amiri',serif;font-size:1.3rem;color:var(--navy);border-right:3px solid var(--gold);padding-right:.7rem;margin-bottom:.85rem}
+.dsec p{color:#555;line-height:1.9;font-size:.92rem}
+.facts-ul{list-style:none}
+.facts-ul li{display:flex;gap:.6rem;padding:.62rem 0;border-bottom:1px solid var(--sand);font-size:.86rem;color:#444}
+.facts-ul li:last-child{border-bottom:none}
+.scard{background:var(--white);border-radius:14px;padding:1.3rem;box-shadow:0 4px 18px rgba(13,31,60,.08);margin-bottom:1.3rem;text-align:center}
+.scard h4{font-family:'Amiri',serif;font-size:1rem;color:var(--navy);margin-bottom:.9rem}
+.qrlbox{border:2px solid var(--gold-pale);border-radius:10px;padding:8px;display:inline-block;margin-bottom:.6rem}
+.vcard{background:var(--white);border-radius:14px;padding:1.3rem;box-shadow:0 4px 18px rgba(13,31,60,.08)}
+.vcard h4{font-family:'Amiri',serif;font-size:1rem;color:var(--navy);margin-bottom:.9rem}
+.vrow{display:flex;align-items:flex-start;gap:.55rem;margin-bottom:.75rem;font-size:.82rem;color:#555}
+.vrow .vi{font-size:.95rem;flex-shrink:0;margin-top:.1rem}
+.vrow strong{display:block;color:var(--navy);font-size:.76rem;margin-bottom:.08rem}
 
-.detail-body { max-width:960px; margin:0 auto; padding:3rem 2rem; }
-.detail-grid { display:grid; grid-template-columns:1fr 280px; gap:2.5rem; align-items:start; }
-@media(max-width:700px){ .detail-grid{grid-template-columns:1fr;} }
-
-.d-section { margin-bottom:2rem; }
-.d-section h3 {
-  font-family:'Amiri',serif; font-size:1.4rem; color:var(--navy);
-  border-right:3px solid var(--gold); padding-right:0.8rem; margin-bottom:0.9rem;
-}
-.d-section p { color:#555; line-height:1.95; font-size:0.92rem; }
-.d-facts { list-style:none; }
-.d-facts li { display:flex; gap:0.6rem; padding:0.65rem 0; border-bottom:1px solid var(--sand); font-size:0.88rem; color:#444; }
-.d-facts li:last-child { border:none; }
-
-.sidebar-box {
-  background:white; border-radius:16px; padding:1.4rem;
-  box-shadow:0 4px 24px rgba(13,31,60,0.07); margin-bottom:1.4rem; text-align:center;
-}
-.sidebar-box h4 { font-family:'Amiri',serif; font-size:1.05rem; color:var(--navy); margin-bottom:1rem; }
-.qr-big { display:flex; justify-content:center; margin-bottom:0.8rem; }
-.qr-big-wrap { border:2px solid var(--gold-pale); border-radius:12px; padding:8px; display:inline-block; }
-
-.visitor-box { background:white; border-radius:16px; padding:1.4rem; box-shadow:0 4px 24px rgba(13,31,60,0.07); }
-.visitor-box h4 { font-family:'Amiri',serif; font-size:1.05rem; color:var(--navy); margin-bottom:1rem; }
-.v-row { display:flex; gap:0.7rem; margin-bottom:0.8rem; font-size:0.83rem; color:#555; }
-.v-row strong { display:block; color:var(--navy); font-size:0.78rem; margin-bottom:0.1rem; }
-
-/* ANIMATIONS */
-@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-
-@media(max-width:600px){
-  .cards-grid{grid-template-columns:1fr;}
-  .hero-stats{gap:1.5rem;}
-  .nav-links{display:none;}
-}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.cards-grid{grid-template-columns:1fr}.hero-stats{gap:1.5rem}}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">
-    بطاقات اكتشاف الأردن
-    <span>Jordan Discovery Cards</span>
-  </div>
-  <div class="nav-links">
-    <a href="#cards">المعالم</a>
-    <a href="#about">عن المشروع</a>
-  </div>
-</nav>
-
-<!-- MAIN PAGE -->
 <div id="main-page">
-
-  <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg"></div>
     <div class="hero-pattern"></div>
-    <div class="hero-content">
-      <div class="hero-badge">مدرسة النهضة الرقمية · Tech Creators Expo 2026</div>
-      <h1>بطاقات اكتشاف <em>الأردن</em></h1>
-      <div class="hero-en">Jordan Discovery Cards</div>
-      <p class="hero-desc">
-        بوابتك التفاعلية لاستكشاف أجمل المعالم الأردنية<br>
-        تاريخ، علم، وجمال في بطاقة واحدة
-      </p>
-      <a href="#cards" class="hero-cta">استكشف المعالم ↓</a>
-    </div>
+    <div class="hero-glow"></div>
+    <div class="badge">Tech Creators Expo 2026 · أكاديمية الحُفّاظ</div>
+    <!-- LOGO -->
+    <img src="images/logo.png" alt="بطاقات اكتشاف الأردن" style="width:170px;height:170px;object-fit:contain;border-radius:50%;box-shadow:0 0 40px rgba(201,168,76,0.3);margin-bottom:1.4rem;animation:fadeUp .8s .05s ease both">
+    <h1>بطاقات اكتشاف <span>الأردن</span></h1>
+    <div class="hero-en">Jordan Discovery Cards</div>
+    <div class="hero-school">مدرسة النهضة الرقمية</div>
+    <p class="hero-desc">بوابتك التفاعلية لاستكشاف أجمل المعالم الأردنية — تاريخ، علم، وجمال في بطاقة واحدة<br><em>Your interactive gateway to Jordan's most iconic landmarks</em></p>
+    <a href="#cards" class="scroll-btn">استكشف المعالم الـ11 ↓</a>
     <div class="hero-stats">
-      <div class="stat"><strong>11</strong><span>معلم سياحي</span></div>
-      <div class="stat"><strong>QR</strong><span>تفاعلي لكل معلم</span></div>
-      <div class="stat"><strong>2</strong><span>لغتان</span></div>
+      <div class="stat"><strong>11</strong>معلم أثري</div>
+      <div class="stat"><strong>QR</strong>تفاعلي</div>
+      <div class="stat"><strong>2</strong>لغتان</div>
     </div>
   </section>
 
-  <!-- CARDS -->
-  <section class="cards-section" id="cards">
-    <div class="section-header">
-      <span class="section-label">Explore · اكتشف</span>
-      <h2>معالم المملكة الأردنية الهاشمية</h2>
-      <p>امسح رمز QR لكل بطاقة للحصول على معلومات تفصيلية كاملة</p>
+  <section class="cards-sec" id="cards">
+    <div class="sec-hdr">
+      <span class="sec-label">Explore · اكتشف</span>
+      <h2>المعالم الأردنية الـ11</h2>
+      <p>امسح رمز QR لكل بطاقة للانتقال مباشرة لصفحة المعلم التفصيلية</p>
     </div>
-
-    <div class="filter-tabs">
-      <button class="filter-btn active" data-filter="all">الكل</button>
-      <button class="filter-btn" data-filter="أثري">أثري</button>
-      <button class="filter-btn" data-filter="طبيعي">طبيعي</button>
-      <button class="filter-btn" data-filter="إسلامي">إسلامي</button>
-      <button class="filter-btn" data-filter="روماني">روماني</button>
-      <button class="filter-btn" data-filter="ديني">ديني</button>
-    </div>
-
     <div class="cards-grid" id="cards-grid"></div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="about-section" id="about">
+  <section class="about">
     <h2>عن المشروع | About</h2>
-    <p>مشروع "بطاقات اكتشاف الأردن" يجمع بين التعليم والسياحة من خلال بطاقات تفاعلية تحمل معلومات غنية عن أجمل مواقع المملكة الأردنية الهاشمية.</p>
-    <div class="features">
-      <div class="feature"><div class="icon">🏛️</div><h4>تاريخ موثق</h4><p>معلومات تاريخية دقيقة عن كل موقع</p></div>
-      <div class="feature"><div class="icon">📱</div><h4>QR تفاعلي</h4><p>امسح وانتقل مباشرة لصفحة المعلم</p></div>
-      <div class="feature"><div class="icon">🌍</div><h4>ثنائي اللغة</h4><p>محتوى كامل بالعربية والإنجليزية</p></div>
-      <div class="feature"><div class="icon">🔬</div><h4>معلومة علمية</h4><p>حقائق علمية مبسطة لكل موقع</p></div>
-      <div class="feature"><div class="icon">♻️</div><h4>سياحة مستدامة</h4><p>نشجع الزيارة المسؤولة والحفاظ على التراث</p></div>
+    <p>مشروع "بطاقات اكتشاف الأردن" يجمع بين التعليم والسياحة من خلال بطاقات تفاعلية تحمل معلومات غنية عن أجمل مواقع المملكة الأردنية الهاشمية، مع رمز QR يفتح تجربة رقمية كاملة.</p>
+    <div class="feats">
+      <div class="feat"><div class="fi">🏛️</div><h4>تاريخ موثق</h4><p>معلومات تاريخية دقيقة عن كل موقع</p></div>
+      <div class="feat"><div class="fi">📱</div><h4>QR تفاعلي</h4><p>امسح وانتقل مباشرة لصفحة المعلم</p></div>
+      <div class="feat"><div class="fi">🌍</div><h4>ثنائي اللغة</h4><p>محتوى كامل بالعربية والإنجليزية</p></div>
+      <div class="feat"><div class="fi">🔬</div><h4>معلومة علمية</h4><p>حقائق علمية مبسطة لكل موقع</p></div>
+      <div class="feat"><div class="fi">♻️</div><h4>سياحة مستدامة</h4><p>نشجع الزيارة المسؤولة والحفاظ على التراث</p></div>
     </div>
   </section>
 
   <footer>
-    <p>بطاقات اكتشاف الأردن &nbsp;|&nbsp; Jordan Discovery Cards &nbsp;|&nbsp; <em>By: Abdulaziz Alhasan</em></p>
-    <p style="margin-top:0.4rem">مدرسة النهضة الرقمية &nbsp;·&nbsp; xplore-jor.github.io/jordan-cards</p>
+    <img src="images/logo.png" alt="logo" style="width:70px;height:70px;object-fit:contain;border-radius:50%;margin-bottom:.8rem;opacity:0.85">
+    <p>بطاقات اكتشاف الأردن &nbsp;|&nbsp; Jordan Discovery Cards &nbsp;|&nbsp; <span>Tech Creators Expo 2026</span></p>
+    <p style="margin-top:.4rem">مدرسة النهضة الرقمية &nbsp;·&nbsp; أكاديمية الحُفّاظ</p>
   </footer>
 </div>
 
-<!-- DETAIL PAGE -->
-<div id="detail-page" class="detail-page">
-  <div class="detail-hero">
+<div id="detail-page" class="dpage">
+  <div class="dhero">
     <img id="d-img" src="" alt="">
-    <div class="detail-hero-overlay">
+    <div class="dhero-ov">
       <button class="back-btn" onclick="goBack()">← العودة</button>
+      <div class="dtag" id="d-tag"></div>
       <h1 id="d-ar"></h1>
-      <div class="en-sub" id="d-en"></div>
+      <div class="dent" id="d-en"></div>
     </div>
   </div>
-  <div class="detail-body">
-    <div class="detail-grid">
+  <div class="dcontent">
+    <div class="dgrid">
       <div>
-        <div class="d-section">
-          <h3>نبذة تاريخية | History</h3>
-          <p id="d-history"></p>
-        </div>
-        <div class="d-section">
-          <h3>المعلومة العلمية | Scientific Facts</h3>
-          <ul class="d-facts" id="d-facts"></ul>
-        </div>
-        <div class="d-section">
-          <h3>لماذا تزوره؟ | Why Visit?</h3>
-          <p id="d-why"></p>
-        </div>
+        <div class="dsec"><h3>نبذة تاريخية | History</h3><p id="d-hist"></p></div>
+        <div class="dsec"><h3>المعلومة العلمية | Scientific Facts</h3><ul class="facts-ul" id="d-facts"></ul></div>
+        <div class="dsec"><h3>لماذا تزوره؟ | Why Visit?</h3><p id="d-why"></p></div>
       </div>
       <div>
-        <div class="sidebar-box">
+        <div class="scard">
+          <img src="images/logo.png" alt="logo" style="width:80px;height:80px;object-fit:contain;border-radius:50%;margin-bottom:.8rem;box-shadow:0 2px 12px rgba(201,168,76,0.2)">
           <h4>رمز QR لهذا الموقع</h4>
-          <div class="qr-big"><div class="qr-big-wrap"><div id="d-qr"></div></div></div>
-          <p style="font-size:0.72rem;color:#aaa;">امسح للوصول المباشر لهذه الصفحة</p>
+          <div class="qrlbox"><div id="d-qr"></div></div>
+          <p style="font-size:.7rem;color:#bbb;margin-top:.3rem">امسح للوصول المباشر · Scan to visit</p>
         </div>
-        <div class="visitor-box">
+        <div class="vcard">
           <h4>معلومات الزيارة</h4>
-          <div id="d-visitor"></div>
+          <div id="d-visit"></div>
         </div>
       </div>
     </div>
@@ -385,316 +198,152 @@ footer em { color:var(--gold); font-style:normal; }
 <script>
 const BASE = "https://xplore-jor.github.io/jordan-cards/";
 
-const landmarks = [
-  {
-    id:"petra", cat:"أثري",
-    ar:"البتراء", en:"Petra",
-    tag:"أثري · Archaeological",
-    img:"images/petra.jpg",
-    loc:"معان، جنوب الأردن", period:"القرن الرابع ق.م",
-    desc:"مدينة الأنباط المنحوتة في الصخر الوردي، إحدى عجائب الدنيا السبع الجديدة وأيقونة الأردن السياحية.",
-    history:"البتراء، المعروفة بـ'المدينة الوردية'، كانت عاصمة مملكة الأنباط منذ القرن الرابع قبل الميلاد. نحت الأنباط الماهرون منشآتها المذهلة مباشرةً في جدران الحجر الرملي الوردي. ازدهرت المدينة كمركز تجاري يربط القوافل عبر الجزيرة العربية والشام ومصر. ضُمّت إلى الإمبراطورية الرومانية عام 106م، وأُعيد اكتشافها على يد المستكشف السويسري بوركهارت عام 1812م.",
-    facts:[
-      {i:"🪨", t:"منحوتة في صخر الحجر الرملي الوردي الذي يتغير لونه مع الضوء"},
-      {i:"🌊", t:"تضم نظام قنوات مائية متطور لنقل المياه عبر الصحراء"},
-      {i:"🏛️", t:"تحتوي على أكثر من 800 منشأة منحوتة في الصخر"},
-      {i:"🌍", t:"مدرجة على قائمة التراث العالمي لليونسكو منذ 1985م"},
-      {i:"📏", t:"تمتد على مساحة 264 كيلومتراً مربعاً"}
-    ],
-    why:"المشي عبر السيق الضيق ليظهر أمامك فجأة الخزنة بكل عظمتها هو لحظة لا تُنسى. المكان يجمع الهندسة المعمارية المذهلة والتاريخ العميق والطبيعة الخلابة.",
-    visitor:{h:"6:00 ص - 6:00 م", a:"مدينة وادي موسى", t:"ابدأ مبكراً وأحضر ماءً كافياً"}
-  },
-  {
-    id:"wadi-rum", cat:"طبيعي",
-    ar:"وادي رم", en:"Wadi Rum",
-    tag:"طبيعي · Natural",
-    img:"images/wadi-rum.jpg",
-    loc:"محافظة العقبة، جنوب الأردن", period:"محمية طبيعية",
-    desc:"وادي القمر، صحراء خلابة من الجبال الرملية الحمراء والصخور العملاقة، مدرجة على قائمة التراث العالمي.",
-    history:"وادي رم كان مسكناً بشرياً منذ آلاف السنين، تركت فيه قبائل الأنباط نقوشاً صخرية ورسومات تصور الحياة اليومية. اكتسب شهرته العالمية حين وصفه الضابط البريطاني لورنس العرب في مذكراته. استُخدم مكاناً للتصوير في أفلام عالمية كـ The Martian وRogue One.",
-    facts:[
-      {i:"🔴", t:"الرمال الحمراء تحتوي أكاسيد الحديد التي تعطيها لونها المميز"},
-      {i:"⛰️", t:"جبل أم الدامي أعلى قمة في الأردن بارتفاع 1854 متراً"},
-      {i:"🌙", t:"سُمّي 'وادي القمر' لمشابهة تضاريسه لسطح القمر"},
-      {i:"🦅", t:"موطن للمها العربي والوعل النوبي"},
-      {i:"🌍", t:"مدرج على قائمة التراث العالمي المختلط منذ 2011م"}
-    ],
-    why:"الصمت المطبق، السماء المليئة بالنجوم ليلاً، والمناظر التي تبدو من كوكب آخر تجعل وادي رم تجربة روحانية فريدة. الرحلات بالجيب والجمل والتخييم تحت النجوم لا تُنسى.",
-    visitor:{h:"طوال اليوم (محمية طبيعية)", a:"60 كم شمال العقبة", t:"ابقَ ليلة للاستمتاع بالنجوم"}
-  },
-  {
-    id:"dead-sea", cat:"طبيعي",
-    ar:"البحر الميت", en:"Dead Sea",
-    tag:"طبيعي · Natural",
-    img:"images/dead-sea.jpg",
-    loc:"الغور، غرب الأردن", period:"ظاهرة طبيعية فريدة",
-    desc:"أكثر البحار ملوحة في العالم ويقع في أخفض نقطة على يابسة الأرض، مياهه العلاجية شهيرة عالمياً.",
-    history:"البحر الميت كان معروفاً منذ القدم بخصائصه العلاجية. استخدم ملحه وطينه الملوك والحضارات القديمة بما فيها الفراعنة الذين استوردوا منه مواد للتحنيط. ذُكر في الكتابات التاريخية ومخطوطات البحر الميت الشهيرة التي اكتُشفت عام 1947م في كهوف قمران.",
-    facts:[
-      {i:"🧂", t:"ملوحته تبلغ 34% أي 10 أضعاف ملوحة المحيطات"},
-      {i:"📉", t:"يقع على عمق 430 متراً تحت مستوى سطح البحر - أخفض نقطة على الأرض"},
-      {i:"🦠", t:"لا تعيش فيه أسماك أو نباتات بسبب الملوحة الشديدة"},
-      {i:"💆", t:"طينه الأسود يُستخدم في العلاج الطبيعي وتجميل البشرة"},
-      {i:"📉", t:"يتراجع بمعدل متر واحد سنوياً بسبب تحويل مياه نهر الأردن"}
-    ],
-    why:"تجربة الطفو على السطح دون أن تغرق هي تجربة لا مثيل لها. المياه والطين العلاجيان يجذبان زوار من حول العالم. غروب الشمس على البحر الميت من أجمل المناظر في الأردن.",
-    visitor:{h:"طوال اليوم", a:"65 كم غرب عمّان", t:"لا تغطس وجهك بالماء - الملوحة عالية جداً"}
-  },
-  {
-    id:"roman-theater", cat:"روماني",
-    ar:"المدرج الروماني", en:"Roman Theater",
-    tag:"روماني · Roman",
-    img:"images/roman-theater.jpg",
-    loc:"وسط عمّان، العاصمة", period:"القرن الثاني الميلادي",
-    desc:"معلم أثري روماني مهيب في قلب العاصمة عمّان، يتسع لـ6000 متفرج ويتميز بصوتياته الهندسية الرائعة.",
-    history:"بُني المدرج الروماني في عمّان (فيلادلفيا الرومانية) في القرن الثاني الميلادي في عهد الإمبراطور أنطونيوس بيوس. كانت عمّان حينها إحدى مدن تحالف الديكابوليس العشر. صُمّم المدرج بشكل نصف دائري محكم في جانب التل لاستغلال الصدى الطبيعي للصوت. لا يزال يستضيف عروضاً فنية وثقافية حتى اليوم.",
-    facts:[
-      {i:"🏟️", t:"يتسع لـ6000 متفرج وصوتياته تصل إلى كل المقاعد بوضوح"},
-      {i:"📐", t:"بُني بزاوية دقيقة في جانب التل لتعزيز الصوت الطبيعي"},
-      {i:"🏛️", t:"يحتضن متحفَين: الفولكلور الأردني والتقاليد الشعبية"},
-      {i:"🌆", t:"يطل مباشرة على وسط البلد وجبل القلعة - منظر بانورامي رائع"},
-      {i:"🎭", t:"لا يزال نشطاً يستضيف فعاليات ثقافية وفنية"}
-    ],
-    why:"المدرج الروماني في قلب عمّان يجمع بين الحضارة الرومانية العريقة والحياة العصرية في العاصمة. الجلوس فيه وتخيّل الآلاف من الرومان يشاهدون العروض تجربة تاريخية استثنائية.",
-    visitor:{h:"8:00 ص - 6:00 م", a:"في وسط البلد، عمّان", t:"زوره مع جبل القلعة في نفس اليوم"}
-  },
-  {
-    id:"umm-qais", cat:"روماني",
-    ar:"أم قيس", en:"Umm Qais",
-    tag:"روماني · Roman",
-    img:"images/umm-qais.jpg",
-    loc:"شمال الأردن، محافظة إربد", period:"العصر الروماني",
-    desc:"مدينة أثرية رومانية قديمة تُعرف باسم جدارا، تتميز بإطلالاتها الخلابة على بحر الجليل وهضبة الجولان.",
-    history:"أم قيس (جدارا) واحدة من مدن الديكابوليس الرومانية العشر. تأسست في العصر الهلنستي وازدهرت في العصر الروماني. اشتُهرت بفلاسفتها وشعرائها، وكان أبرز أبنائها الشاعر ميليجر. تحتوي على مسرح روماني وحمامات وشارع معمود وكنيسة بيزنطية، وتطل على ثلاث دول في آنٍ واحد.",
-    facts:[
-      {i:"👁️", t:"تطل على فلسطين وسوريا والأردن معاً من نفس النقطة"},
-      {i:"🏛️", t:"تحتوي على مسرح روماني أسود اللون - نادر جداً - مبني من البازلت"},
-      {i:"🌊", t:"تُشرف على بحر الجليل وهضبة الجولان ووادي اليرموك"},
-      {i:"🏺", t:"تضم متحفاً يحتوي على تماثيل ولقى أثرية نادرة"},
-      {i:"📜", t:"وُلد فيها الشاعر الإغريقي ميليجر أحد أشهر شعراء العصر الهلنستي"}
-    ],
-    why:"أم قيس تقدم ما لا يقدمه أي موقع آخر: إطلالة على ثلاث دول في آنٍ واحد، مع آثار رومانية مذهلة وطبيعة خضراء رائعة. المطاعم المحيطة بالموقع تقدم أشهى المأكولات الأردنية.",
-    visitor:{h:"8:00 ص - 5:00 م", a:"110 كم شمال عمّان قرب إربد", t:"أفضل وقت للزيارة ربيعاً - الطبيعة خضراء ورائعة"}
-  },
-  {
-    id:"citadel", cat:"أثري",
-    ar:"جبل القلعة", en:"Amman Citadel",
-    tag:"أثري · Archaeological",
-    img:"images/citadel.jpg",
-    loc:"جبل القلعة، عمّان", period:"من عصور ما قبل التاريخ",
-    desc:"من أقدم الأماكن المأهولة بالسكان في العالم، يضم معالم أثرية من حضارات متعددة عبر آلاف السنين.",
-    history:"جبل القلعة (أكروبوليس عمّان) مسكون منذ العصر الحجري النيوليتي قبل 7000 عام. حكمته حضارات متعاقبة: العمونيون، الآشوريون، الفرس، المقدونيون، الرومان، البيزنطيون، والأمويون. يضم معبد هرقل الروماني من القرن الثاني الميلادي، والكنيسة البيزنطية من القرن السادس، والقصر الأموي من القرن الثامن. منه تطّلع عمّان بكاملها.",
-    facts:[
-      {i:"🏺", t:"مسكون منذ 7000 عام - من أقدم المناطق الحضرية في العالم"},
-      {i:"🏛️", t:"معبد هرقل الروماني تبقّت منه أعمدة ضخمة وذراع أثرية عملاقة"},
-      {i:"👁️", t:"يطل على عمّان بأكملها والمدرج الروماني - منظر بانورامي استثنائي"},
-      {i:"🕌", t:"يضم آثاراً من حضارات 7 مختلفة في موقع واحد"},
-      {i:"🏛️", t:"المتحف الأثري في موقعه يحتوي على لقى نادرة من مختلف العصور"}
-    ],
-    why:"جبل القلعة هو قلب عمّان التاريخي؛ الوقوف بين أعمدة معبد هرقل والنظر إلى المدرج الروماني والمدينة الحديثة في آنٍ واحد يعطيك احساساً بامتداد الحضارة الإنسانية عبر الزمن.",
-    visitor:{h:"8:00 ص - 7:00 م", a:"في قلب عمّان - جبل القلعة", t:"زوره مع المدرج الروماني في نفس اليوم - يكملان بعضهما"}
-  },
-  {
-    id:"nebo", cat:"ديني",
-    ar:"جبل نيبو", en:"Mount Nebo",
-    tag:"ديني · Religious",
-    img:"images/nebo.jpg",
-    loc:"مادبا، غرب الأردن", period:"منذ ما قبل التاريخ",
-    desc:"الجبل المقدس الذي رأى منه النبي موسى عليه السلام أرض الميعاد، يحمل فسيفساء بيزنطية رائعة.",
-    history:"جبل نيبو بارتفاع 817 متراً يحمل أهمية دينية استثنائية في الأديان الإبراهيمية الثلاثة. يُعتقد أنه المكان الذي صعد إليه النبي موسى عليه السلام ليرى أرض كنعان قبل وفاته. تعود أولى كنائسه للقرن الرابع الميلادي. تُحفظ فيه فسيفساء بيزنطية من القرنين الخامس والسادس الميلاديين. يستقبل اليوم حجاجاً من مختلف الأديان.",
-    facts:[
-      {i:"✝️", t:"يحتضن كنيسة 'صياغة' ذات الفسيفساء البيزنطية المذهلة"},
-      {i:"👁️", t:"من قمته يمكن رؤية القدس والبحر الميت في يوم صافٍ"},
-      {i:"🐍", t:"يضم نُصُب 'الحية البرونزية' هدية من البابا يوحنا بولس الثاني"},
-      {i:"🎨", t:"فسيفساءه من أجمل وأكمل الفسيفساء البيزنطية في الشرق الأوسط"},
-      {i:"🕌", t:"موقع مقدس لدى المسيحيين والمسلمين واليهود معاً"}
-    ],
-    why:"الوقوف على نفس المكان الذي وقف فيه النبي موسى عليه السلام ورؤية المنظر البانوري الخلاب يمنحك تجربة روحية فريدة. الفسيفساء البيزنطية المحفوظة تشهد على براعة الفنانين القدامى.",
-    visitor:{h:"8:00 ص - 5:00 م", a:"9 كم غرب مادبا - 70 كم من عمّان", t:"تفضّل في يوم صافٍ لرؤية القدس من القمة"}
-  },
-  {
-    id:"jerash", cat:"روماني",
-    ar:"جرش", en:"Jerash",
-    tag:"روماني · Roman",
-    img:"images/jerash.jpg",
-    loc:"محافظة جرش، شمال الأردن", period:"القرن الأول ق.م",
-    desc:"من أفضل المدن الرومانية المحفوظة في العالم خارج إيطاليا، تضم أعمدة ومسارح وميداناً بيضاوياً فريداً.",
-    history:"جرش (جيراسا) أُسّست في القرن الثالث قبل الميلاد وازدهرت في العصر الروماني لتصبح عضواً في تحالف الديكابوليس. شهدت ذروة ازدهارها في القرن الثاني الميلادي في عهد الإمبراطور هادريان. دمرها زلزال عام 749م ودفنها الرمال لقرون حتى أُعيد اكتشافها في القرن التاسع عشر. هي اليوم من أروع المدن الرومانية المحفوظة في العالم.",
-    facts:[
-      {i:"🏟️", t:"تحتوي على مسرحين روماني كبير وصغير لا يزالان يستضيفان فعاليات"},
-      {i:"🛣️", t:"الشارع المعمود يمتد 600 متر وتزينه أعمدة يونانية أصيلة"},
-      {i:"⭕", t:"الميدان البيضاوي الفريد من نوعه يتسع لـ15,000 شخص"},
-      {i:"🏛️", t:"تضم معابد زيوس وأرتيميس المحفوظة بشكل مذهل"},
-      {i:"📅", t:"تستضيف مهرجان جرش الثقافي سنوياً منذ 1981م"}
-    ],
-    why:"جرش تنقلك مباشرة إلى العصر الروماني؛ المشي على نفس الأحجار التي مشى عليها الرومان ورؤية الأعمدة والمعابد بحالة حفظ مذهلة يجعلك تشعر وكأن الزمن توقف.",
-    visitor:{h:"8:00 ص - 7:00 م", a:"48 كم شمال عمّان", t:"خصص 3-4 ساعات للزيارة"}
-  },
-  {
-    id:"maeen", cat:"طبيعي",
-    ar:"حمامات ماعين", en:"Ma'in Hot Springs",
-    tag:"طبيعي · Natural",
-    img:"images/maeen.jpg",
-    loc:"محافظة مادبا، غرب الأردن", period:"ظاهرة طبيعية",
-    desc:"منطقة ينابيع وشلالات حرارية استشفائية نادرة، مياهها المعدنية الساخنة تصل إلى 63 درجة مئوية.",
-    history:"حمامات ماعين عُرفت منذ العصور القديمة بخصائصها العلاجية. يُعتقد أن الملك هيرودس الكبير كان يتعافى فيها من أمراضه. استُخدمت عبر التاريخ من قبل الرومان والبيزنطيين والعرب. تقع على سفوح الجبال المشرفة على البحر الميت وتنصب مياهها الحارة في نهر الموجب.",
-    facts:[
-      {i:"🌡️", t:"درجة حرارة المياه تصل إلى 63 درجة مئوية - من أسخن الينابيع في العالم"},
-      {i:"⬇️", t:"تقع 264 متراً تحت مستوى سطح البحر وتصب في البحر الميت"},
-      {i:"🧪", t:"مياهها تحتوي على الكبريت والمعادن ذات الخصائص العلاجية النادرة"},
-      {i:"💧", t:"الشلالات الحارة تنهمر من الصخور البركانية الحمراء - منظر فريد"},
-      {i:"🏨", t:"تحيط بها منتجعات طبية متخصصة تستقبل آلاف الزوار سنوياً"}
-    ],
-    why:"حمامات ماعين تجمع بين الجمال الطبيعي الخلاب والفائدة الصحية الحقيقية؛ الاستحمام تحت الشلالات الساخنة في وسط الطبيعة الجبلية تجربة استثنائية لا توجد في أماكن كثيرة بالعالم.",
-    visitor:{h:"8:00 ص - 10:00 م", a:"58 كم جنوب غرب عمّان قرب مادبا", t:"احجز مسبقاً - المكان يكتظ في عطل نهاية الأسبوع"}
-  },
-  {
-    id:"ajloun", cat:"إسلامي",
-    ar:"قلعة عجلون", en:"Ajloun Castle",
-    tag:"إسلامي · Islamic",
-    img:"images/ajloun.jpg",
-    loc:"محافظة عجلون، شمال الأردن", period:"1184م - العصر الأيوبي",
-    desc:"قلعة إسلامية شاهقة بناها قائد أيوبي في عهد صلاح الدين لحماية المنطقة من الغزوات الصليبية.",
-    history:"قلعة عجلون (قلعة الربض) بناها الأمير عز الدين أسامة بن منقذ عام 1184م بأمر صلاح الدين الأيوبي. صُممت لمراقبة الطرق المؤدية إلى نهر الأردن والتصدي للصليبيين. وسّعها المماليك لاحقاً وعززوا تحصيناتها. تُعدّ من أروع أمثلة العمارة العسكرية الإسلامية في بلاد الشام.",
-    facts:[
-      {i:"🏰", t:"تضم سبعة أبراج دفاعية وخندقاً محيطاً وعدة بوابات ضخمة"},
-      {i:"🌲", t:"تحيط بها غابات كثيفة من السنديان والصنوبر - من أجمل مناطق الأردن"},
-      {i:"📡", t:"كانت جزءاً من منظومة تراسل بصري مع قلاع الشام"},
-      {i:"⚔️", t:"صمدت أمام الهجمات الصليبية ولم تُفتح بالقوة"},
-      {i:"🗺️", t:"تطل على غور الأردن وفلسطين وسوريا في أيام صافية"}
-    ],
-    why:"قلعة عجلون تأخذك في رحلة عبر التاريخ الإسلامي والعمارة العسكرية المتقنة. الغابات الخضراء المحيطة وتغريد الطيور يجعلان الزيارة تجربة طبيعية وتاريخية في آنٍ واحد.",
-    visitor:{h:"8:00 ص - 4:00 م (شتاء) - 6:00 م (صيف)", a:"22 كم غرب إربد", t:"الزيارة في الربيع للاستمتاع بالطبيعة الخضراء"}
-  },
-  {
-    id:"karak", cat:"إسلامي",
-    ar:"قلعة الكرك", en:"Karak Castle",
-    tag:"صليبي - إسلامي · Crusader",
-    img:"images/karak.jpg",
-    loc:"محافظة الكرك، وسط الأردن", period:"القرن الثاني عشر الميلادي",
-    desc:"من أكبر القلاع الصليبية في بلاد الشام، بُنيت في القرن الثاني عشر وترتفع 1000 متر فوق سطح البحر.",
-    history:"قلعة الكرك بناها الصليبيون في القرن الثاني عشر الميلادي لتكون من أمنع حصونهم في بلاد الشام. لعبت دوراً محورياً في الحروب الصليبية وكانت مقر إمارة الكرك الصليبية. فتحها صلاح الدين الأيوبي عام 1188م بعد حصار مطوّل. وسّعها المماليك لاحقاً وعززوا تحصيناتها الهائلة. ممراتها السرية المظلمة وقاعاتها الضخمة جزء من أسطورتها.",
-    facts:[
-      {i:"🏰", t:"ترتفع على تلة حصينة 1000 متر فوق سطح البحر - منظر بانورامي هائل"},
-      {i:"🕳️", t:"تضم ممرات سرية وقاعات مظلمة ومتاهة من الأنفاق تحت الأرض"},
-      {i:"⚔️", t:"كانت مقر رينالد دي شاتيون الصليبي المشهور بغاراته على قوافل المسلمين"},
-      {i:"🏛️", t:"تحتوي على متحف يعرض لقى أثرية من المنطقة"},
-      {i:"📏", t:"تمتد على مساحة 23 ألف متر مربع - من أكبر قلاع الشرق الأوسط"}
-    ],
-    why:"قلعة الكرك من أكثر المواقع إثارة في الأردن؛ الممرات المظلمة والقاعات الضخمة والأنفاق تحت الأرض تمنحك إحساساً حقيقياً بحياة العصور الوسطى. المنظر من أسوارها يمتد إلى البحر الميت والصحراء.",
-    visitor:{h:"8:00 ص - 5:00 م", a:"125 كم جنوب عمّان على الطريق الملكية", t:"خذ مصباحاً لاستكشاف الأنفاق والممرات المظلمة"}
-  }
+const LM = [
+  {id:"petra",ar:"البتراء",en:"Petra",tag:"أثري · Nabataean",img:"petra.jpg",loc:"معان، جنوب الأردن",per:"القرن السادس ق.م",
+   desc:"المدينة الوردية المنحوتة في الصخر، عاصمة الأنباط وإحدى عجائب الدنيا السبع الجديدة، مدرجة على قائمة التراث العالمي لليونسكو.",
+   hist:"البتراء، المعروفة بـ'المدينة الوردية'، كانت عاصمة مملكة الأنباط منذ القرن السادس قبل الميلاد. نحت الأنباط الماهرون منشآتها مباشرةً في جدران الحجر الرملي الوردي، وأنشأوا نظام قنوات مياه متطور. ازدهرت كمركز تجاري يربط طرق القوافل عبر الجزيرة العربية والشام ومصر، حتى ضُمّت للإمبراطورية الرومانية عام 106م. أُعيد اكتشافها عام 1812م على يد المستكشف السويسري يوهان بوركهارت.",
+   facts:[["🪨","منحوتة في صخر الحجر الرملي الوردي الذي يتغير لونه حسب الضوء"],["💧","تضم نظام قنوات مائية متطور لنقل المياه عبر الصحراء"],["🏛️","تحتوي على أكثر من 800 منشأة منحوتة في الصخر"],["🌍","مدرجة على قائمة التراث العالمي لليونسكو منذ 1985م"],["📏","تمتد على مساحة 264 كيلومتراً مربعاً"]],
+   why:"المشي عبر السيق الضيق ليظهر أمامك فجأة الخزنة المنحوتة بعظمتها هو لحظة لا تُنسى. تجمع بين الهندسة المعمارية المذهلة والتاريخ العميق والطبيعة الخلابة.",
+   v:{h:"6:00 ص - 6:00 م",a:"من مدينة وادي موسى",t:"ابدأ مبكراً، ارتدِ حذاءً مريحاً، أحضر ماءً كافياً"}},
+
+  {id:"wadi-rum",ar:"وادي رم",en:"Wadi Rum",tag:"طبيعي · Natural",img:"wadi-rum.jpg",loc:"محافظة العقبة",per:"ملايين السنين",
+   desc:"وادي القمر — صحراء خلابة من الجبال الرملية الحمراء والصخور العملاقة، محمية طبيعية ومدرجة على قائمة التراث العالمي المختلط.",
+   hist:"وادي رم كان مسكناً بشرياً منذ آلاف السنين، تركت فيه قبائل الأنباط والعرب نقوشاً صخرية ورسومات تعود لآلاف السنين. اكتسب شهرته العالمية حين وصفه الضابط البريطاني T.E. لورنس (لورنس العرب) في مذكراته. استُخدم مكاناً للتصوير في أفلام عالمية مثل The Martian وRogue One وStar Wars.",
+   facts:[["🔴","الرمال الحمراء تحتوي على أكاسيد الحديد التي تعطيها لونها المميز"],["⛰️","جبل أم الدامي أعلى قمة في الأردن بارتفاع 1854 متراً"],["🌙","سُمّي بـ'وادي القمر' لمشابهة تضاريسه لسطح القمر"],["🦅","موطن لحيوانات برية نادرة كالمها العربي والوعل النوبي"],["🏕️","مدرج على قائمة التراث العالمي المختلط منذ 2011م"]],
+   why:"الصمت المطبق، السماء المليئة بالنجوم ليلاً، والمناظر التي تبدو كأنها من كوكب آخر. يقدم رحلات بالجيب والجمل والتخييم تحت النجوم.",
+   v:{h:"طوال اليوم (محمية طبيعية)",a:"قرب العقبة، 60 كم شمالاً",t:"ابقَ ليلة للنجوم، احجز مع دليل محلي"}},
+
+  {id:"dead-sea",ar:"البحر الميت",en:"Dead Sea",tag:"طبيعي · Natural",img:"dead-sea.jpg",loc:"غور الأردن، غرب المملكة",per:"ملايين السنين",
+   desc:"أكثر البحار ملوحةً في العالم وأخفض نقطة على يابسة الأرض، مشهور بفوائده العلاجية والجمالية الاستثنائية.",
+   hist:"البحر الميت من أقدم المنتجعات الصحية في التاريخ، استخدمه الفراعنة والرومان للعلاج. يذكره الكتاب المقدس والقرآن الكريم. يتراجع منسوبه بمعدل متر واحد سنوياً بسبب تحويل مياه نهر الأردن، مما دفع لمشاريع حفظ دولية.",
+   facts:[["🧂","ملوحته 34% أي أكثر من ضعف ملوحة المحيطات العادية"],["📉","يقع 430 متراً تحت سطح البحر — أخفض نقطة على اليابسة"],["🏊","لا يمكن الغرق فيه بسبب كثافة الملح العالية"],["💊","طينه الأسود الغني بالمعادن يُستخدم لعلاج الأمراض الجلدية"],["🦠","لا توجد فيه أسماك أو نباتات بسبب الملوحة الشديدة"]],
+   why:"تجربة الطفو على سطح الماء دون جهد فريدة من نوعها. الطين العلاجي والهواء الغني بالأكسجين يجعله وجهة صحية وسياحية استثنائية.",
+   v:{h:"حسب المنتجع / المنطقة",a:"ساعة من عمّان غرباً",t:"لا تغمس وجهك في الماء، اغسل الملح جيداً بعد الخروج"}},
+
+  {id:"roman-theatre",ar:"المدرج الروماني",en:"Roman Theatre",tag:"روماني · Roman",img:"roman-theatre.jpg",loc:"وسط العاصمة عمّان",per:"القرن الثاني الميلادي",
+   desc:"معلم أثري روماني مهيب في قلب عمّان، بُني في القرن الثاني الميلادي ويتسع لـ 6000 متفرج بصوتيات هندسية مذهلة.",
+   hist:"بُني المدرج الروماني في عهد الإمبراطور الروماني أنطونينوس بيوس في القرن الثاني الميلادي، عندما كانت عمّان تُعرف باسم 'فيلادلفيا'. نُحت في المنحدر الطبيعي لجبل القلعة واستفاد من التضاريس لتعزيز الصوتيات. يقع بجواره متحفا الفولكلور والتقاليد الشعبية.",
+   facts:[["🏟️","يتسع لـ 6,000 متفرج وصوتياته طبيعية مذهلة دون مكبرات صوت"],["⛏️","نُحت جزئياً في الصخر الطبيعي لجبل القلعة"],["🎭","لا يزال يستضيف مهرجانات وحفلات موسيقية حتى اليوم"],["🏛️","يقع بجانب متحفين أثريين للفولكلور والتقاليد"],["📍","في قلب البلد القديمة بعمّان"]],
+   why:"الجلوس في نفس المقاعد التي جلس عليها الرومان قبل ألفي عام وسماع الصوت يتردد طبيعياً تجربة لا تُنسى.",
+   v:{h:"8:00 ص - 7:00 م",a:"وسط البلد، عمّان",t:"قرّبه من زيارة جبل القلعة في نفس اليوم"}},
+
+  {id:"umm-qais",ar:"أم قيس",en:"Umm Qais",tag:"روماني · Roman",img:"umm-qais.jpg",loc:"محافظة إربد، شمال الأردن",per:"القرن الأول ق.م",
+   desc:"مدينة أثرية رومانية تُعرف باسم 'جدارا'، تتميز بإطلالاتها الخلابة على بحر الجليل وهضبة الجولان وهي من أهم مدن الديكابوليس.",
+   hist:"جدارا (أم قيس) واحدة من أهم مدن الديكابوليس، تأسست في القرن الأول قبل الميلاد. اشتُهرت بمدرستها الأدبية وأنجبت شعراء وفلاسفة مشهورين. تحتوي على مسرحين ومسرح صغير وحمامات رومانية ونظام صرف صحي متطور.",
+   facts:[["👁️","تطل على بحيرة طبريا والجولان وسهل حوران في آن واحد"],["🖤","تتميز بأعمدتها الفريدة المصنوعة من الحجر البازلتي الأسود"],["🎭","تحتوي على مسرحين روماني محفوظان بشكل جيد"],["📚","أنجبت الشاعر الغزلي الشهير ميليغر وعدداً من الفلاسفة"],["🛁","حماماتها الرومانية من أكثر الحمامات المحفوظة في المنطقة"]],
+   why:"المنظر البانوري من أم قيس الذي يطل على ثلاث دول ويمتد حتى بحيرة طبريا هو من أجمل المناظر في الشرق الأوسط.",
+   v:{h:"8:00 ص - 4:00 م",a:"30 كم شمال غرب إربد",t:"الربيع أجمل وقت للزيارة بسبب الاخضرار"}},
+
+  {id:"citadel",ar:"جبل القلعة",en:"Amman Citadel",tag:"تاريخي · Historical",img:"citadel.jpg",loc:"وسط العاصمة عمّان",per:"7000 سنة",
+   desc:"من أقدم الأماكن المأهولة في العالم، يضم معالم من حقب مختلفة: رومانية وبيزنطية وأموية، ويوفر منظراً بانورامياً على عمّان.",
+   hist:"جبل القلعة من أقدم المواقع المأهولة في العالم، يعود تاريخ الاستيطان فيه لأكثر من 7000 عام. شهد حضارات متعاقبة: العمونيون ثم الرومان الذين شيدوا معبد هرقل، فالبيزنطيون ثم الأمويون الذين أقاموا قصراً فخماً. يعكس تاريخ عمّان بأكمله في مكان واحد.",
+   facts:[["🏛️","معبد هرقل الروماني بُني في القرن الثاني الميلادي"],["🕌","القصر الأموي (القرن الثامن م) يتميز بقاعة العرش الكبرى"],["⛪","الكنيسة البيزنطية تعكس ازدهار المسيحية في المنطقة"],["🏺","يضم متحفاً أثرياً يحوي آثار الحضارات المتعاقبة"],["👁️","يوفر منظراً بانورامياً رائعاً على عمّان الحديثة والقديمة"]],
+   why:"متحف مفتوح تحت السماء يأخذك في رحلة عبر 7000 عام من التاريخ الإنساني. المنظر على عمّان من القمة لا يُضاهى.",
+   v:{h:"8:00 ص - 7:00 م (صيف) / 5:00 م (شتاء)",a:"وسط عمّان",t:"ادمج زيارته مع المدرج الروماني في نفس اليوم"}},
+
+  {id:"nebo",ar:"جبل نيبو",en:"Mount Nebo",tag:"ديني · Religious",img:"nebo.jpg",loc:"مادبا، غرب الأردن",per:"ما قبل التاريخ",
+   desc:"الجبل المقدس الذي رأى منه النبي موسى عليه السلام أرض الميعاد، يحمل فسيفساء بيزنطية رائعة وأهمية دينية استثنائية.",
+   hist:"جبل نيبو بارتفاع 817 متراً يحمل أهمية دينية استثنائية في الأديان الإبراهيمية الثلاثة. يُعتقد أنه الموقع الذي وقف فيه النبي موسى عليه السلام ليرى أرض كنعان قبل وفاته. تعود أولى الكنائس فيه للقرن الرابع الميلادي. تُحفظ فيه فسيفساء بيزنطية رائعة من القرنين الخامس والسادس.",
+   facts:[["✝️","يحتضن كنيسة 'صياغة' ذات الفسيفساء البيزنطية المذهلة"],["👁️","من قمته يمكن رؤية القدس والبحر الميت ونهر الأردن"],["🐍","يضم النُّصُب الشهير 'الحية البرونزية' هدية من البابا يوحنا بولس الثاني"],["🎨","فسيفساءه من أجمل الفسيفساء البيزنطية في الشرق الأوسط"],["🕌","موقع مقدس لدى المسيحيين والمسلمين واليهود معاً"]],
+   why:"الوقوف على نفس المكان الذي وقف فيه النبي موسى عليه السلام مع المنظر البانوري الخلاب يمنحك تجربة روحية فريدة.",
+   v:{h:"8:00 ص - 5:00 م",a:"9 كم غرب مادبا، 70 كم من عمّان",t:"تفضل في يوم صافٍ لرؤية القدس من القمة"}},
+
+  {id:"jerash",ar:"جرش",en:"Jerash",tag:"روماني · Roman",img:"jerash.jpg",loc:"محافظة جرش، شمال الأردن",per:"القرن الثالث ق.م",
+   desc:"من أفضل وأكمل المدن الرومانية المحفوظة خارج إيطاليا، تضم ساحة بيضاوية فريدة وشارع الأعمدة الشهير ومعبد أرتيميس الرائع.",
+   hist:"جرش (جيراسا) أُسست في القرن الثالث قبل الميلاد وازدهرت في العصر الروماني كمدينة مهمة في تحالف الديكابوليس. تتميز بساحتها البيضاوية الفريدة التي لا مثيل لها في العالم الروماني، وشارع الأعمدة الممتد أكثر من 800 متر.",
+   facts:[["⭕","الميدان البيضاوي فريد في العالم الروماني لا يوجد مثيله"],["🏟️","تحتوي على مسرحين روماني كبير وصغير لا يزالان يستضيفان فعاليات"],["🛣️","شارع الأعمدة يمتد 800 متر وتزينه أعمدة يونانية أصيلة"],["🏛️","معبد أرتيميس محفوظ بشكل مذهل ويضم 12 عموداً شامخاً"],["📅","تستضيف مهرجان جرش الثقافي الدولي سنوياً منذ 1981م"]],
+   why:"جرش تنقلك مباشرة للعصر الروماني. المشي على نفس الأحجار ورؤية الأعمدة والمعابد بحالة حفظ مذهلة تجربة لا تُنسى.",
+   v:{h:"8:00 ص - 7:00 م",a:"48 كم شمال عمّان",t:"خصص 3-4 ساعات للاستمتاع الكامل"}},
+
+  {id:"maeen",ar:"حمامات ماعين",en:"Ma'in Hot Springs",tag:"طبيعي · Natural",img:"maeen.jpg",loc:"محافظة مادبا، وسط الأردن",per:"ملايين السنين",
+   desc:"منطقة ينابيع وشلالات حرارية استشفائية نادرة، تتميز بمياهها الغنية بالمعادن والكبريت وتصل حرارتها إلى 63 درجة مئوية.",
+   hist:"حمامات ماعين مكان مذكور في التاريخ القديم، استخدمها الرومان والبيزنطيون والعرب للاستشفاء. يُشير التاريخ إلى أن هيرودس الكبير كان يعالج نفسه في مياهها. تقع على منحدرات درامية تسقط منها الينابيع الحارة شلالات في الوادي السحيق.",
+   facts:[["🌡️","درجة حرارة المياه تصل إلى 63 درجة مئوية"],["⬇️","تقع تحت مستوى سطح البحر بحوالي 264 متراً"],["💧","مياهها تصب في البحر الميت مباشرةً"],["🧪","تحتوي على الكبريت والكلوريد والفلوريد ومعادن نادرة"],["🏥","تُستخدم لعلاج أمراض المفاصل والأمراض الجلدية"]],
+   why:"مشهد الشلالات الحارة تسقط وسط صخور عملاقة في واد خضراء خلاب مع إمكانية الاستحمام في المياه العلاجية الطبيعية تجربة استثنائية.",
+   v:{h:"8:00 ص - 8:00 م",a:"60 كم جنوب غرب عمّان",t:"احضر ملابس السباحة — المياه ساخنة جداً!"}},
+
+  {id:"ajloun",ar:"قلعة عجلون",en:"Ajloun Castle",tag:"إسلامي · Islamic",img:"ajloun.jpg",loc:"محافظة عجلون، شمال الأردن",per:"1184م",
+   desc:"قلعة إسلامية أيوبية شاهقة بناها قادة صلاح الدين الأيوبي وسط غابات السنديان لحماية المنطقة من الصليبيين.",
+   hist:"قلعة عجلون (قلعة الربض) بناها القائد الأيوبي عز الدين أسامة عام 1184م بأمر من صلاح الدين الأيوبي لمراقبة الطرق المؤدية لنهر الأردن والتصدي للصليبيين. وسّعها المماليك لاحقاً. تُعدّ من أروع أمثلة العمارة العسكرية الإسلامية في بلاد الشام.",
+   facts:[["🏰","تضم سبعة أبراج دفاعية وخندقاً محيطاً وعدة بوابات ضخمة"],["🌲","تحيط بها غابات كثيفة من السنديان والصنوبر"],["📡","كانت جزءاً من منظومة تراسل بصري مع قلاع الشام"],["⚔️","صمدت أمام الهجمات الصليبية ولم تُفتح بالقوة قط"],["🗺️","تطل على مساحة شاسعة حتى بحيرة طبريا في الأيام الصافية"]],
+   why:"المشي في أروقتها وأبراجها مع المنظر البانوري للغابات الخضراء والوديان تجربة تاريخية وطبيعية رائعة.",
+   v:{h:"8:00 ص - 4:00 م (شتاء) / 6:00 م (صيف)",a:"22 كم غرب إربد",t:"الربيع والخريف أفضل أوقات الزيارة"}},
+
+  {id:"karak",ar:"قلعة الكرك",en:"Karak Castle",tag:"صليبي · Crusader",img:"karak.jpg",loc:"محافظة الكرك، وسط الأردن",per:"القرن الثاني عشر الميلادي",
+   desc:"واحدة من أكبر القلاع الصليبية في بلاد الشام، بُنيت عام 1142م وترتفع 1000 متر بتحصينات ضخمة وممرات سرية مظلمة.",
+   hist:"قلعة الكرك بُنيت عام 1142م من قِبَل الصليبيين وكانت مقراً لأمراء الكرك. فتحها صلاح الدين الأيوبي عام 1189م بعد حصار طويل. وسّعها الأيوبيون والمماليك لاحقاً لتصبح من أضخم القلاع في المنطقة.",
+   facts:[["📏","ترتفع نحو 1000 متر فوق سطح البحر على تلة استراتيجية"],["🌑","تشتهر بممراتها السرية وقاعاتها المظلمة المحفورة في الصخر"],["⚔️","لعبت دوراً محورياً في الصراع الصليبي الإسلامي بالقرن الثاني عشر"],["🏰","تحتضن متحفاً أثرياً يروي تاريخ المنطقة عبر العصور"],["🚪","كانت تتحكم في طرق التجارة والحج في العصور الوسطى"]],
+   why:"الاستكشاف داخل أنفاقها وممراتها المعتمة مع منظر الوادي العميق حولها يمنحك إحساساً حقيقياً بالتاريخ العسكري في العصور الوسطى.",
+   v:{h:"8:00 ص - 4:00 م",a:"120 كم جنوب عمّان على الطريق الملكي",t:"أحضر مصباحاً لاستكشاف الممرات المظلمة"}}
 ];
 
-// ===== RENDER CARDS =====
+// RENDER
 const grid = document.getElementById('cards-grid');
-
-landmarks.forEach((lm, i) => {
-  const card = document.createElement('div');
-  card.className = 'landmark-card';
-  card.dataset.cat = lm.cat;
-  card.style.transitionDelay = `${(i % 4) * 0.08}s`;
-
-  card.innerHTML = `
-    <div class="card-img-wrap">
+LM.forEach((lm,i) => {
+  const c = document.createElement('div');
+  c.className='lcard'; c.style.transitionDelay=`${i*0.055}s`; c.id=`card-${lm.id}`;
+  c.innerHTML=`
+    <div class="img-wrap">
       <img src="${lm.img}" alt="${lm.ar}" loading="lazy">
-      <div class="card-overlay"></div>
-      <div class="card-tag">${lm.tag}</div>
-      <div class="card-title">
-        <h3>${lm.ar}</h3>
-        <div class="en">${lm.en}</div>
-      </div>
+      <div class="img-overlay"></div>
+      <div class="ctag">${lm.tag}</div>
+      <div class="ctitle"><h3>${lm.ar}</h3><div class="cen">${lm.en}</div></div>
     </div>
-    <div class="card-body">
-      <div class="chips">
-        <span class="chip">📍 ${lm.loc}</span>
-        <span class="chip">🕰️ ${lm.period}</span>
-      </div>
-      <p class="card-desc">${lm.desc}</p>
-      <div class="card-facts">
-        ${lm.facts.slice(0,2).map(f=>`<div class="fact-row"><div class="dot"></div><span>${f.t}</span></div>`).join('')}
-      </div>
+    <div class="cbody">
+      <div class="irow"><span class="chip">📍 ${lm.loc}</span><span class="chip">🕰️ ${lm.per}</span></div>
+      <p class="cdesc">${lm.desc}</p>
       <div class="qr-row">
-        <div class="qr-wrap" id="qr-${lm.id}"></div>
-        <div class="qr-text">
+        <div class="qr-mini" id="qr-${lm.id}"></div>
+        <div class="qlabel">
           <h4>امسح للمزيد | Scan</h4>
-          <p>جولة تفاعلية كاملة<br>Interactive full tour</p>
-          <a class="detail-btn" onclick="openDetail('${lm.id}')">عرض التفاصيل ←</a>
+          <p>جولة تفاعلية كاملة<br>Full interactive tour</p>
+          <a class="dbtn" onclick="openDetail('${lm.id}')">عرض التفاصيل ←</a>
         </div>
+        <img src="images/logo.png" alt="logo" style="width:54px;height:54px;object-fit:contain;border-radius:50%;margin-right:auto;opacity:0.92;flex-shrink:0">
       </div>
-    </div>
-  `;
-  grid.appendChild(card);
-
-  setTimeout(() => {
-    new QRCode(document.getElementById(`qr-${lm.id}`), {
-      text: `${BASE}#${lm.id}`,
-      width:64, height:64,
-      colorDark:"#0D1F3C", colorLight:"#ffffff",
-      correctLevel: QRCode.CorrectLevel.M
-    });
-  }, 200 + i * 50);
+    </div>`;
+  grid.appendChild(c);
+  setTimeout(()=>{
+    try{ new QRCode(document.getElementById(`qr-${lm.id}`),{text:BASE+'#'+lm.id,width:60,height:60,colorDark:"#0D1F3C",colorLight:"#fff",correctLevel:QRCode.CorrectLevel.M}); }catch(e){}
+  },200+i*40);
 });
 
-// ===== FILTER =====
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const f = btn.dataset.filter;
-    document.querySelectorAll('.landmark-card').forEach(card => {
-      const show = f === 'all' || card.dataset.cat === f;
-      card.classList.toggle('hidden', !show);
-    });
-  });
-});
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08});
+document.querySelectorAll('.lcard').forEach(c=>obs.observe(c));
 
-// ===== DETAIL =====
-function openDetail(id) {
-  const lm = landmarks.find(l => l.id === id);
-  if (!lm) return;
-  document.getElementById('d-img').src = lm.img;
-  document.getElementById('d-ar').textContent = lm.ar;
-  document.getElementById('d-en').textContent = lm.en;
-  document.getElementById('d-history').textContent = lm.history;
-  document.getElementById('d-why').textContent = lm.why;
-  document.getElementById('d-facts').innerHTML = lm.facts.map(f=>`<li><span>${f.i}</span><span>${f.t}</span></li>`).join('');
-  document.getElementById('d-visitor').innerHTML = `
-    <div class="v-row"><span>🕐</span><div><strong>ساعات العمل</strong>${lm.visitor.h}</div></div>
-    <div class="v-row"><span>🚗</span><div><strong>كيفية الوصول</strong>${lm.visitor.a}</div></div>
-    <div class="v-row"><span>💡</span><div><strong>نصائح</strong>${lm.visitor.t}</div></div>
-  `;
-  const qrEl = document.getElementById('d-qr');
-  qrEl.innerHTML = '';
-  new QRCode(qrEl, {
-    text:`${BASE}#${id}`, width:130, height:130,
-    colorDark:"#0D1F3C", colorLight:"#ffffff",
-    correctLevel: QRCode.CorrectLevel.H
-  });
-  document.getElementById('main-page').style.display = 'none';
+function openDetail(id){
+  const lm=LM.find(l=>l.id===id); if(!lm)return;
+  document.getElementById('d-img').src=lm.img;
+  document.getElementById('d-ar').textContent=lm.ar;
+  document.getElementById('d-en').textContent=lm.en;
+  document.getElementById('d-tag').textContent=lm.tag;
+  document.getElementById('d-hist').textContent=lm.hist;
+  document.getElementById('d-why').textContent=lm.why;
+  document.getElementById('d-facts').innerHTML=lm.facts.map(f=>`<li><span>${f[0]}</span><span>${f[1]}</span></li>`).join('');
+  document.getElementById('d-visit').innerHTML=`
+    <div class="vrow"><span class="vi">🕐</span><div><strong>ساعات العمل</strong>${lm.v.h}</div></div>
+    <div class="vrow"><span class="vi">🚗</span><div><strong>كيفية الوصول</strong>${lm.v.a}</div></div>
+    <div class="vrow"><span class="vi">💡</span><div><strong>نصائح للزيارة</strong>${lm.v.t}</div></div>`;
+  const qe=document.getElementById('d-qr'); qe.innerHTML='';
+  setTimeout(()=>{ try{new QRCode(qe,{text:BASE+'#'+id,width:130,height:130,colorDark:"#0D1F3C",colorLight:"#fff",correctLevel:QRCode.CorrectLevel.H})}catch(e){} },100);
+  document.getElementById('main-page').style.display='none';
   document.getElementById('detail-page').classList.add('active');
-  window.scrollTo(0,0);
-  history.pushState(null, '', `#${id}`);
+  window.scrollTo(0,0); history.pushState(null,'','#'+id);
 }
 
-function goBack() {
-  document.getElementById('main-page').style.display = 'block';
+function goBack(){
+  document.getElementById('main-page').style.display='block';
   document.getElementById('detail-page').classList.remove('active');
-  history.pushState(null, '', '#cards');
-  setTimeout(() => document.getElementById('cards').scrollIntoView({behavior:'smooth'}), 100);
+  history.pushState(null,'','./');
+  setTimeout(()=>document.getElementById('cards').scrollIntoView({behavior:'smooth'}),100);
 }
 
-// Direct URL hash
-window.addEventListener('load', () => {
-  const hash = location.hash.replace('#','');
-  if (hash && landmarks.find(l=>l.id===hash)) openDetail(hash);
+window.addEventListener('load',()=>{ const h=location.hash.replace('#',''); if(h&&LM.find(l=>l.id===h))openDetail(h); });
+window.addEventListener('popstate',()=>{
+  const h=location.hash.replace('#','');
+  if(h&&LM.find(l=>l.id===h))openDetail(h);
+  else{ document.getElementById('main-page').style.display='block'; document.getElementById('detail-page').classList.remove('active'); }
 });
-
-// Scroll animation
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, {threshold:0.1});
-document.querySelectorAll('.landmark-card').forEach(c => obs.observe(c));
 </script>
 </body>
 </html>
